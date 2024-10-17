@@ -181,7 +181,7 @@ object YarnUtils extends Logger {
                           val activeUrl =
                             httpTestYarnRMUrl(x._1, rpcTimeoutForChecks)
                           if (activeUrl != null) {
-                            rmId = idUrlMap(activeUrl)
+                            rmId = idUrlMap(x._1)
                             break
                           }
                         }))

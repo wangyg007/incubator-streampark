@@ -103,6 +103,7 @@
         <hadoop.version>3.3.4</hadoop.version>
         <hbase.version>2.1.10</hbase.version>
         <redis.version>3.3.0</redis.version>
+        <zoopkeeper.version>3.6.3</zoopkeeper.version>
         <es.version>6.2.3</es.version>
         <influxdb.version>2.17</influxdb.version>
         <protobuf.version>2.5.0</protobuf.version>
@@ -146,12 +147,6 @@
         <mockito-scala.version>1.17.14</mockito-scala.version>
         <assertj.version>3.23.1</assertj.version>
         <testcontainer.version>1.19.8</testcontainer.version>
-        <curator.version>5.3.0</curator.version>
-        <snappy.version>1.1.10.1</snappy.version>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <oshi-core.version>6.1.1</oshi-core.version>
-        <commons-collections4.version>4.3</commons-collections4.version>
-        <hibernate-validator.version>6.2.2.Final</hibernate-validator.version>
 
         <maven.scaladoc.skip>false</maven.scaladoc.skip>
         <maven.scalastyle.skip>false</maven.scalastyle.skip>
@@ -164,21 +159,6 @@
     <dependencyManagement>
 
         <dependencies>
-            <!-- spring -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.7.11</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate-validator.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>force-shading</artifactId>
@@ -264,6 +244,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zoopkeeper.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${redis.version}</version>
@@ -297,25 +283,6 @@
                         <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <!-- mybatis-plus -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <dependency>

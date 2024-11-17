@@ -15,14 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.streampark.registry.core.server;
+package org.apache.streampark.console.core.service;
 
-public interface JdbcRegistryDataChangeListener {
+public interface RegistryService {
 
-    void onJdbcRegistryDataChanged(String key, String value);
+    /**
+     * Registry the service.
+     */
+    void registry();
 
-    void onJdbcRegistryDataDeleted(String key);
-
-    void onJdbcRegistryDataAdded(String key, String value);
-
+    /**
+     * Close the registry service.
+     */
+    void unRegister();
 }

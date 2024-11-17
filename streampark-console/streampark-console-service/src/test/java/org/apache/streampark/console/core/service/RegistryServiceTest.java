@@ -15,24 +15,32 @@
  * limitations under the License.
  */
 
-package org.apache.streampark.registry.core;
+package org.apache.streampark.console.core.service;
 
-import org.apache.streampark.common.utils.NetworkUtils;
+import org.apache.streampark.common.util.SystemPropertyUtils;
+import org.apache.streampark.console.core.service.impl.RegistryServiceImpl;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+public class RegistryServiceTest {
 
-@SpringBootTest
-@ContextConfiguration(classes = {NetworkUtils.class})
-@TestPropertySource(locations = "classpath:application.yaml")
-class LockUtilsTest {
+    private final RegistryServiceImpl registryService = new RegistryServiceImpl();
 
     @Test
-    void getLockOwner() {
-        assertThat(LockUtils.getLockOwner()).isNotNull();
+    public void testRegister() {
+        if (enableHA()) {
+            try {
+                registryService.registry();
+            } catch (Exception e) {
+                Assertions.assertEquals(1, registryService.getCurrentNodes().size());
+                registryService.unRegister();
+            }
+        }
     }
+
+    public boolean enableHA() {
+        return SystemPropertyUtils.get("high-availability.enable", "false").equals("true");
+    }
+
 }
